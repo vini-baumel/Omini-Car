@@ -2,7 +2,17 @@
 # Omini-Car
 Omini-Car é um carrinho Bluetooth omnidirecional capaz de se mover em qualquer direção (frente, trás, deslizar para esquerda/direita e rotação) sem alterar sua orientação. Essa capacidade é alcançada utilizando rodas Mecanum e 4 motores independentes, controlados por um controle de videogame via Bluetooth.
 
-O firmware do Arduino é construído usando PlatformIO (C++), e é usado um código em Python usando a biblioteca pygame para fazer a conexão: controle -> PC - > Arduino.
+O firmware do Arduino é construído usando PlatformIO (C++), e é usado um código em Python usando as bibliotecas pygame e pyserial para fazer a conexão: Controle -> PC - > Arduino.
+
+<video src="media/video1.mp4" video1></video>
+<video src="media/video2.mp4" video2></video>
+
+## Equipe
+ Almério Jakcson\
+ Arthur Duque\
+ João Azevedo\
+ Matheus Alcântara\
+ Vinícius Baumel
 
 # Materiais usados
 - 1x Arduino Nano
@@ -21,16 +31,54 @@ O firmware do Arduino é construído usando PlatformIO (C++), e é usado um cód
 - 1x Controle de video game (com pelo menos 2 joysticks)
 - 1x Computador com Bluetooth
 
+# Apresentação do projeto:
+Apresentação final para a caderia de Introdução a Computação
+
+## Processos de criação:
+### Bluetooth:
+Optamos por utilizar a comunicação Bluetooth para controlar o carrinho, utilizando o módulo HC-05. Para ajustar a tensão para 3,3V, foi necessário o uso de resistores em um dos pinos do módulo. Como diferencial, integramos um controle de videogame, estabelecendo a comunicação controle → PC → Arduino. Isso foi viabilizado por um código em Python utilizando a biblioteca Pygame para realizar a comunicação entre o controle e o Arduino.\
+![foto1](media/foto1.png)
+
+### Design / Modelo do Carrinho:
+Inicialmente, realizamos uma pesquisa para definir o design do chassi e do suporte. Após essa definição, verificamos que o modelo com Arduino Uno seria grande demais, por isso substituímos por um Arduino Nano. A seguir, cortamos o acrílico e fizemos as impressões 3D dos componentes no espaço maker. Realizamos o encaixe com parafusos e, finalmente, montamos o suporte completo do carrinho.\
+![foto3](media/foto3.png)
+![foto2](media/foto2.png)
+
+### Motores:
+Iniciamos a montagem das conexões da ponte H com os motores, utilizando uma fonte de alimentação para testar cada motor individualmente. Cada motor foi acoplado a uma roda mecanum omnidirecional, permitindo a movimentação do carrinho em todas as direções (como descrito no relatório inicial), utilizando os vetores dos eixos X e Y.\
+![foto5](media/foto5.png)
+
+
+## Dificuldades: 
+### Bluetooth:
+A maior dificuldade foi implementar a biblioteca de Bluetooth no código, especialmente no que se refere às conexões entre o computador e o Arduino, além de enviar os inputs do controle para o Arduino. Também enfrentamos dificuldades para manter a conexão estável por longos períodos. Outro desafio foi o ajuste da voltagem nos fios para garantir uma comunicação eficiente.
+![foto4](media/foto4.png)
+
+### Design / Modelo do Carrinho:
+A principal dificuldade foi ajustar as proporções do modelo, pois as informações encontradas na internet eram inconsistentes. Durante o corte do acrílico, uma das peças do chassi quebrou. As impressões 3D também apresentaram falhas, principalmente nas peças do chassi e para-choque, que não tinham boa qualidade e se desmanchavam facilmente. Por conta da falta de tempo, optamos por simplificar a impressão, fazendo um modelo apenas para o suporte, sem o para-choque.
+![foto6](media/foto6.png)
+
+### Motores:
+O ajuste de voltagem para os motores foi outro desafio, pois precisávamos garantir que todos os componentes funcionassem corretamente. A ligação da ponte H também apresentou dificuldades, especialmente em relação à polaridade e ao uso do pino enable para controlar a ativação dos motores. Além disso, tivemos problemas para sincronizar os motores, o que exigiu ajustes no código para garantir que os motores operassem de forma coordenada e eficiente.
+![foto7](media/foto7.png)
+
+## Considerações Finais sobre o Projeto:
+O desenvolvimento deste projeto permitiu aplicar conhecimentos teóricos de mecânica, eletrônica e programação. Embora tenhamos enfrentado dificuldades, como as inconsistências nos modelos, falhas nas impressões 3D e limitações de tempo, conseguimos adaptar as soluções e concluir o carrinho funcional.
+O uso do Bluetooth, o controle via controle de videogame e as rodas mecanum omnidirecionais trouxeram um diferencial importante ao projeto, permitindo movimentação em todas as direções. O trabalho em equipe foi crucial para o sucesso, assim como a resolução de problemas ao longo do processo.
+Este projeto proporcionou um aprendizado prático significativo, demonstrando a importância do planejamento, adaptação e criatividade na execução de projetos tecnológicos.
+
+
 # Setup no computador
 
 ## Pré-requisitos
 
-Antes de instalar e executar, você precisa ter:
+Antes de executar, você precisa ter:
 - Git
 - Visual Studio Code 
 - PlatformIO IDE (extensão do VS Code)
 - Python
 - pygame (biblioteca do python)
+- pyserial (biblioteca do python)
 
 **Obervação:** Esse projeto foi testado apenas em Linux. (Mint)
 ## Instalação
@@ -44,7 +92,7 @@ cd Omini-Car
 
 Abra a pasta no Visual Studio Code.
 
-Instale a extensão PlatformIO IDE (se ainda não tiver).
+Instale a extensão PlatformIO IDE.
 
 **Compilar o projeto:**
 
@@ -72,6 +120,11 @@ Instale o pygame executando:
 python -m pip install pygame-ce
 ```
 
+Instale o pyserial executando:
+```bash
+python -m pip install pyserial
+```
+
 ## Conectando o Bluetooth
 Certifique-se de que o modulo bluetooth está piscando rapidamente, isso significa que ele está esperando para parear. Então conecte-se a ele procurando por algo com nome HC-05, o pin é 1234. 
 
@@ -79,8 +132,7 @@ Feito isso, descubra a qual port o módulo está conectado (no linux geralmente 
 
 Agora, conecte o seu controle ao computador(pode ser por bluetooth ou não), e rode esse mesmo código. Você vai ver no terminal os inputs enviados pelo controle, e no serial monitor, você poderá ver a força que o Arduíno bota em cada motor.
 
-# Conexões dos fios 
-**observação:**  não será explicado as conexões com a bateria. 
+# Conexões dos jumpers dos motores 
 
 
 **Ponte H frontal:**
