@@ -9,10 +9,10 @@ O firmware do Arduino é construído usando PlatformIO (C++), e é usado um cód
 - [Gravação 2](media/video2.mp4)
 
 ## Equipe
- - Almério Jakcson\
- - Arthur Duque\
- - João Azevedo\
- - Matheus Alcântara\
+ - Almério Jakcson
+ - Arthur Duque
+ - João Azevedo
+ - Matheus Alcântara
  - Vinícius Baumel
 
 # Materiais usados
