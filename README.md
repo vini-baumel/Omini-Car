@@ -4,8 +4,9 @@ Omini-Car é um carrinho Bluetooth omnidirecional capaz de se mover em qualquer 
 
 O firmware do Arduino é construído usando PlatformIO (C++), e é usado um código em Python usando as bibliotecas pygame e pyserial para fazer a conexão: Controle -> PC - > Arduino.
 
-<video src="media/video1.mp4" controls></video>
-<video src="media/video2.mp4" controls></video>
+**Gravações:** 
+- [Gravação 1](media/video1.mp4)
+- [Gravação 2](media/video2.mp4)
 
 ## Equipe
  Almério Jakcson\
@@ -70,27 +71,27 @@ Este projeto proporcionou um aprendizado prático significativo, demonstrando a 
 
 # Setup no computador
 
-## Pré-requisitos
+## Requisitos
 
-Antes de executar, você precisa ter:
-- Git
+No código do projeto, são usados:
 - Visual Studio Code 
 - PlatformIO IDE (extensão do VS Code)
 - Python
 - pygame (biblioteca do python)
 - pyserial (biblioteca do python)
 
-**Obervação:** Esse projeto foi testado apenas em Linux. (Mint)
-## Instalação
-
+**Obervação:** Esse projeto foi testado apenas em Linux (Mint).
+## Como executar o projeto:
 Clone o repositório:
-
 ```bash
 git clone https://github.com/v-baumel/Omini-Car.git
-cd Omini-Car
+```
+Abra a pasta no Visual Studio Code.
+```bash
+code Omini-Car/
 ```
 
-Abra a pasta no Visual Studio Code.
+### Enviando o código ao Arduino:
 
 Instale a extensão PlatformIO IDE.
 
@@ -113,24 +114,22 @@ Para abrir o monitor serial e ver saídas do microcontrolador (via USB), clique 
 pio device monitor
 ```
 
-Instale o Python (se ainda não tiver)
+### Conectando o Bluetooth
 
+Instale o Python (se ainda não tiver)\
 Instale o pygame executando:
 ```bash
 python -m pip install pygame-ce
 ```
-
 Instale o pyserial executando:
 ```bash
 python -m pip install pyserial
 ```
-
-## Conectando o Bluetooth
 Certifique-se de que o modulo bluetooth está piscando rapidamente, isso significa que ele está esperando para parear. Então conecte-se a ele procurando por algo com nome HC-05, o pin é 1234. 
 
 Feito isso, descubra a qual port o módulo está conectado (no linux geralmente é  /dev/rfcomm0 ou /dev/rfcomm1), vá em ./src/Computador/controller_bluetooth.py e na linha 11 bote a variável port para o nome do seu port e salve. (Não foi implementado um método automático de procurar o port)
 
-Agora, conecte o seu controle ao computador(pode ser por bluetooth ou não), e rode esse mesmo código. Você vai ver no terminal os inputs enviados pelo controle, e no serial monitor, você poderá ver a força que o Arduíno bota em cada motor.
+Agora, conecte o seu controle ao computador (pode ser por bluetooth ou não), e rode esse mesmo código. Você vai ver no terminal os inputs enviados pelo controle, e no serial monitor, você poderá ver a força que o Arduíno bota em cada motor.
 
 # Conexões dos jumpers dos motores 
 
