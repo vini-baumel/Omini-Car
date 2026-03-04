@@ -4,7 +4,7 @@ Omini-Car é um carrinho Bluetooth omnidirecional capaz de se mover em qualquer 
 
 O firmware do Arduino é construído usando PlatformIO (C++), e é usado um código em Python usando as bibliotecas pygame e pyserial para fazer a conexão: Controle -> PC - > Arduino.
 
-[**Gravação:**](media/video1.mp4)
+[**Gravação**](media/video1.mp4)
 
 ## Equipe
  - Almério Jakcson
